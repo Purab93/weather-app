@@ -11,8 +11,14 @@ export default class App extends React.Component{
       label:'Mumbai',
       value: 'Mumbai'
     },{
-      label:'Delhi',
-      value: 'Delhi'
+      label:'Amsterdam',
+      value: 'Amsterdam'
+    }, {
+      label: 'London',
+      value: 'London'
+    }, {
+      label: 'Tokyo',
+      value: 'Tokyo'
     }];
   }
 
@@ -20,7 +26,6 @@ export default class App extends React.Component{
     Axios.get('https://api.openweathermap.org/data/2.5/weather?q='+cityData.value+'&appid=56565355e87b48d10440f076e9c88be1',{})
       .then((response) => {
           // handle success
-          debugger;
           let weatherData = response.data;
           console.log(this.state);
           this.setState({
@@ -44,7 +49,7 @@ export default class App extends React.Component{
               className="city-dropdown"
               placeholder="Select City"
           />        
-          <Day {...this.state?this.state.wthData:{}}/>
+          {this.state ? <Day {...this.state.wthData} />:<></>}
         </header>
       </div>
     );

@@ -10,6 +10,7 @@ export default class App extends React.Component{
         wthrIconUrl = this.props && this.props.weather? 'http://openweathermap.org/img/wn/' + this.props.weather[0].icon + '@2x.png' : '';
     return (
       <div className="day-holder">
+          <h3>Temperature</h3>
           <div>
               <img src={wthrIconUrl} alt="weather report"/>
           </div>
