@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import Axios from 'axios';
 import './App.css';
 
 import Day from './components/day';
@@ -9,33 +8,24 @@ export default class App extends React.Component{
   getCountryList(){
     return [{
       label:'Mumbai',
-      value: 'Mumbai'
+      value: 'Mumbai,IN'
     },{
       label:'Amsterdam',
-      value: 'Amsterdam'
+      value: 'Amsterdam,NH'
     }, {
       label: 'London',
-      value: 'London'
+      value: 'London,UK'
     }, {
       label: 'Tokyo',
-      value: 'Tokyo'
+      value: 'Tokyo,JP'
     }];
   }
 
   cityChangeHandler = (cityData) => {
-    Axios.get('https://api.openweathermap.org/data/2.5/weather?q='+cityData.value+'&appid=56565355e87b48d10440f076e9c88be1',{})
-      .then((response) => {
-          // handle success
-          let weatherData = response.data;
-          console.log(this.state);
-          this.setState({
-            wthData:weatherData
-          });
-          return true;
-      }).catch(function (error) {
-          // handle error
-          console.log(error);
-      });
+    this.setState({
+      selcity: cityData
+    });
+    
   }
 
   render(){
@@ -49,7 +39,7 @@ export default class App extends React.Component{
               className="city-dropdown"
               placeholder="Select City"
           />        
-          {this.state ? <Day {...this.state.wthData} />:<></>}
+          {this.state ? <Day {...this.state} />:<></>}
         </header>
       </div>
     );
